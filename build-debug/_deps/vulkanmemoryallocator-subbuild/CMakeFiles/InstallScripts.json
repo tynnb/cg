@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

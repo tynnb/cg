@@ -1,0 +1,41 @@
+{
+	"abstract" : true,
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library"
+		],
+		"files" : 
+		[
+			"build-debug/_deps/vulkanmemoryallocator-src/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 27,
+				"parent" : 0
+			}
+		]
+	},
+	"codemodelVersion" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	},
+	"id" : "VulkanMemoryAllocator::@3b7dc57821a5902e577d",
+	"name" : "VulkanMemoryAllocator",
+	"paths" : 
+	{
+		"build" : "_deps/vulkanmemoryallocator-build",
+		"source" : "build-debug/_deps/vulkanmemoryallocator-src"
+	},
+	"sources" : [],
+	"type" : "INTERFACE_LIBRARY"
+}

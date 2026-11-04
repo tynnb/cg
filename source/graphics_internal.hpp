@@ -30,6 +30,27 @@ namespace graphics::internal {
 		VkCommandBuffer command_buffer;
 	};
 
+	struct PointLight {
+		float position[3];
+		float intensity;
+		float color[3];
+		float radius;
+	};
+
+	struct SpotLight {
+		float position[3];
+		float intensity;
+		float direction[3];
+		float radius;
+		float color[3];
+		float innerAngle;
+		float outerAngle;
+		float pad[3];   // было pad[2] -> нужно pad[3]
+	};
+
+	static_assert(sizeof(SpotLight) == 64, "SpotLight must match std430 layout in shader");
+	static_assert(sizeof(PointLight) == 32, "PointLight must match std430 layout in shader");
+
 	extern Context context;
 
 	bool initialize(GLFWwindow* const window);
@@ -44,8 +65,20 @@ namespace graphics::internal {
 		const uint32_t* indices, size_t index_count);
 
 	bool createUniformBuffer();
-	void updateUniformBuffer(const float* matrix, const float* color);
-	void updateUniformBuffer2(const float* matrix, const float* color);
+
+	void updateSceneUniformBuffer(
+		const float* viewProj,
+		const float* cameraPos,
+		int pointLightCount,
+		const float* ambient,
+		int spotLightCount,
+		const float* directionalDir,
+		const float* directionalColor,
+		float directionalIntensity);
+
+	void updateModelUniformBuffer(const float* model, const float* albedo, float shininess, const float* specColor);
+	void updateLights(const PointLight* lights, int count);
+	void updateSpotLights(const SpotLight* lights, int count);
 
 	bool createPipeline();
 

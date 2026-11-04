@@ -1,0 +1,6 @@
+# Hashes of file build rules.
+b03f778f38a4e4c0aa294cbefad9ce21 C:/Projects/cg-lab/shaders/shader.frag.spv
+53491a6962f80d31b5d97b6198304c01 C:/Projects/cg-lab/shaders/shader.vert.spv
+5c2f16678e017e489d2c765352558920 CMakeFiles/shaders
+e04e8da39606e5a21a65214b35a1b70c _deps/glfw-build/CMakeFiles/uninstall
+3f34e38563ce8f62f925d67f1c0d9efb _deps/glfw-build/src/CMakeFiles/update_mappings

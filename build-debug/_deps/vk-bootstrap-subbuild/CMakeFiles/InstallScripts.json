@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Projects/cg-lab/build-debug/_deps/vk-bootstrap-subbuild/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

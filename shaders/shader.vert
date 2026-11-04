@@ -1,16 +1,32 @@
 #version 450 core
 
 layout(location = 0) in vec3 in_position;
-layout(location = 1) in vec3 in_color;
+layout(location = 1) in vec3 in_normal;
 
-layout(location = 0) out vec3 out_color;
+layout(location = 0) out vec3 out_normal;
+layout(location = 1) out vec3 out_worldPos;
 
-layout(std140, set = 0, binding = 0) uniform GlobalUniforms {
-    mat4 matrix;
-    vec4 color;
-} ubo;
+layout(set = 0, binding = 0) uniform SceneUniforms {
+    mat4 viewProj;
+    vec4 cameraPos;
+    vec4 ambientColor;
+    vec4 directionalDirection;
+    vec4 directionalColor;
+    int pointLightCount;
+    int spotLightCount;
+} scene;
+
+layout(set = 1, binding = 0) uniform ModelUniforms {
+    mat4 model;
+    vec3 albedo;
+    float shininess;
+    vec3 specularColor;
+} model;
 
 void main() {
-    gl_Position = ubo.matrix * vec4(in_position, 1.0);
-    out_color = in_color * ubo.color.rgb;
+    gl_Position = scene.viewProj * model.model * vec4(in_position, 1.0);
+
+    out_normal = mat3(transpose(inverse(model.model))) * in_normal;
+
+    out_worldPos = vec3(model.model * vec4(in_position, 1.0));
 }

@@ -1,0 +1,14 @@
+# Target labels
+ vulkanmemoryallocator-populate
+# Source files and their labels
+C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/CMakeFiles/vulkanmemoryallocator-populate
+C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/CMakeFiles/vulkanmemoryallocator-populate.rule
+C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/CMakeFiles/vulkanmemoryallocator-populate-complete.rule
+C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-build.rule
+C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-configure.rule
+C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-download.rule
+C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-install.rule
+C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-mkdir.rule
+C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-patch.rule
+C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-test.rule
+C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-update.rule

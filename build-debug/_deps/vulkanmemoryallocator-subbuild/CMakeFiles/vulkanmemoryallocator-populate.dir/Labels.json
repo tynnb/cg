@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/CMakeFiles/vulkanmemoryallocator-populate"
+		},
+		{
+			"file" : "C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/CMakeFiles/vulkanmemoryallocator-populate.rule"
+		},
+		{
+			"file" : "C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/CMakeFiles/vulkanmemoryallocator-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-build.rule"
+		},
+		{
+			"file" : "C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-download.rule"
+		},
+		{
+			"file" : "C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-install.rule"
+		},
+		{
+			"file" : "C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-test.rule"
+		},
+		{
+			"file" : "C:/Projects/cg-lab/build-debug/_deps/vulkanmemoryallocator-subbuild/vulkanmemoryallocator-populate-prefix/src/vulkanmemoryallocator-populate-stamp/vulkanmemoryallocator-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"vulkanmemoryallocator-populate"
+		],
+		"name" : "vulkanmemoryallocator-populate"
+	}
+}
