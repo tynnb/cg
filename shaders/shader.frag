@@ -2,6 +2,7 @@
 
 layout(location = 0) in vec3 in_normal;
 layout(location = 1) in vec3 in_worldPos;
+layout(location = 2) in vec2 in_uv;
 layout(location = 0) out vec4 out_color;
 
 struct PointLight {
@@ -47,11 +48,43 @@ layout(set = 1, binding = 0) uniform ModelUniforms {
     vec3 specularColor;
 } model;
 
+layout(set = 2, binding = 0) uniform sampler2D albedoTexture;
+
+layout(push_constant) uniform PushConstants {
+    float time;
+    int enableWeirdSampling;
+} pc;
+
 void main() {
     vec3 N = normalize(in_normal);
     vec3 V = normalize(scene.cameraPos.xyz - in_worldPos);
 
-    vec3 ambient = scene.ambientColor.xyz * model.albedo;
+        vec3 surfaceAlbedo;
+        if (pc.enableWeirdSampling != 0) {
+            float stepIndex = floor(pc.time);
+            float progress = fract(pc.time);
+            float a = fract(sin(stepIndex * 127.1) * 43758.5453);
+            float b = fract(sin((stepIndex + 1.0) * 127.1) * 43758.5453);
+            float noise = mix(a, b, smoothstep(0.0, 1.0, progress));
+            float radius = mix(0.02, 0.08, noise);
+            vec2 uv1 = in_uv + vec2(sin(pc.time), cos(pc.time)) * radius;
+            vec2 uv2 = in_uv * 2.0 + vec2(pc.time * 0.1, 0.0);
+            vec3 t1 = texture(albedoTexture, uv1).rgb;
+            vec3 t2 = texture(albedoTexture, uv2).rgb;
+
+            surfaceAlbedo = mix(t1, t2, 0.5);
+
+            surfaceAlbedo *= vec3(
+                0.8 + 0.2 * sin(pc.time * 2.0),
+                0.8 + 0.2 * cos(pc.time * 2.0),
+                1.0
+            );
+        } else {
+            surfaceAlbedo = texture(albedoTexture, in_uv).rgb;
+        }
+        surfaceAlbedo *= model.albedo;
+
+    vec3 ambient = scene.ambientColor.xyz * surfaceAlbedo;
     vec3 finalColor = ambient;
 
     {
@@ -60,7 +93,7 @@ void main() {
         float diff = max(dot(N, L), 0.0);
         float spec = pow(max(dot(N, H), 0.0), model.shininess);
         finalColor += scene.directionalColor.xyz * scene.directionalColor.w
-                    * (diff * model.albedo + spec * model.specularColor);
+                    * (diff * surfaceAlbedo + spec * model.specularColor);
     }
 
     for (int i = 0; i < scene.pointLightCount; i++) {
@@ -76,7 +109,8 @@ void main() {
 
         float diff = max(dot(N, L), 0.0);
         float spec = pow(max(dot(N, H), 0.0), model.shininess);
-        finalColor += light.color * (diff * model.albedo + spec * model.specularColor)
+
+        finalColor += light.color * (diff * surfaceAlbedo + spec * model.specularColor)
                     * light.intensity * attenuation;
     }
 
@@ -99,7 +133,7 @@ void main() {
         float diff = max(dot(N, L), 0.0);
         float spec = pow(max(dot(N, H), 0.0), model.shininess);
 
-        finalColor += light.color * (diff * model.albedo + spec * model.specularColor)
+        finalColor += light.color * (diff * surfaceAlbedo + spec * model.specularColor)
                     * light.intensity * attenuation * spotFactor;
     }
 

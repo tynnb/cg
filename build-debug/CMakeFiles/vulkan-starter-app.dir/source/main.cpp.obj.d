@@ -166,6 +166,11 @@ CMakeFiles/vulkan-starter-app.dir/source/main.cpp.obj: \
  C:/msys64/ucrt64/include/assert.h \
  C:/Projects/cg-lab/build-debug/_deps/imgui-src/backends/imgui_impl_glfw.h \
  C:\Projects\cg-lab\source\graphics_internal.hpp \
+ C:/msys64/ucrt64/include/c++/15.2.0/vector \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_uninitialized.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_vector.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_bvector.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/vector.tcc \
  C:/VulkanSDK/1.4.321.1/include/vulkan/vulkan_core.h \
  C:/VulkanSDK/1.4.321.1/include/vulkan/vk_platform.h \
  C:/VulkanSDK/1.4.321.1/include/vk_video/vulkan_video_codec_h264std.h \

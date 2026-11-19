@@ -1,6 +1,9 @@
 #pragma once
 
 #include <cstdint>
+#include <cstddef>
+#include <string>
+#include <vector>
 
 #include <vulkan/vulkan_core.h>
 
@@ -23,6 +26,7 @@ namespace graphics::internal {
 		VkExtent2D swapchain_extent;
 
 		VkRenderPass render_pass;
+		size_t min_uniform_buffer_offset_alignment;
 	};
 
 	struct FrameData {
@@ -45,7 +49,7 @@ namespace graphics::internal {
 		float color[3];
 		float innerAngle;
 		float outerAngle;
-		float pad[3];   // было pad[2] -> нужно pad[3]
+		float pad[3];
 	};
 
 	static_assert(sizeof(SpotLight) == 64, "SpotLight must match std430 layout in shader");
@@ -66,6 +70,13 @@ namespace graphics::internal {
 
 	bool createUniformBuffer();
 
+	bool createTextureFromFile(const char* path);
+	void setActiveTexture(int index);
+	int getActiveTextureIndex();
+	int getTextureCount();
+
+	void setPushConstants(float time, int enableWeirdSampling);
+
 	void updateSceneUniformBuffer(
 		const float* viewProj,
 		const float* cameraPos,
@@ -76,7 +87,12 @@ namespace graphics::internal {
 		const float* directionalColor,
 		float directionalIntensity);
 
-	void updateModelUniformBuffer(const float* model, const float* albedo, float shininess, const float* specColor);
+	void updateModelUniformBuffer(
+		uint32_t slot,
+		const float* model,
+		const float* albedo,
+		float shininess,
+		const float* specColor);
 	void updateLights(const PointLight* lights, int count);
 	void updateSpotLights(const SpotLight* lights, int count);
 

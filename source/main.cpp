@@ -83,7 +83,7 @@ int main() {
 		ImGui::Render();
 
 		graphics::internal::FrameData fd = graphics::internal::prepare();
-		application::render(fd);
+		//application::render(fd);
 		graphics::internal::submitAndPresent();
 	}
 

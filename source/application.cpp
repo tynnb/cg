@@ -12,45 +12,60 @@
 struct Vertex {
     float position[3];
     float normal[3];
+    float uv[2];
 };
 
-Vertex makeVertex(float x, float y, float z, float nx, float ny, float nz) {
-    Vertex v;
-    v.position[0] = x; v.position[1] = y; v.position[2] = z;
-    v.normal[0] = nx; v.normal[1] = ny; v.normal[2] = nz;
-    return v;
+Vertex makeVertex(
+    float x, float y, float z,
+    float nx, float ny, float nz,
+    float u, float v
+) {
+    Vertex vertex;
+
+    vertex.position[0] = x;
+    vertex.position[1] = y;
+    vertex.position[2] = z;
+
+    vertex.normal[0] = nx;
+    vertex.normal[1] = ny;
+    vertex.normal[2] = nz;
+
+    vertex.uv[0] = u;
+    vertex.uv[1] = v;
+
+    return vertex;
 }
 
 const Vertex cubeVertices[] = {
-    makeVertex(-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f),
-    makeVertex(0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f),
-    makeVertex(0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f),
-    makeVertex(-0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f),
+    makeVertex(-0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f),
+    makeVertex( 0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f),
+    makeVertex( 0.5f,  0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f),
+    makeVertex(-0.5f,  0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f),
 
-    makeVertex(-0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f),
-    makeVertex(0.5f, -0.5f,  0.5f,  0.0f,  0.0f,  1.0f),
-    makeVertex(0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f),
-    makeVertex(-0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f),
+    makeVertex(-0.5f, -0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f),
+    makeVertex( 0.5f, -0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f),
+    makeVertex( 0.5f,  0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f),
+    makeVertex(-0.5f,  0.5f,  0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f),
 
-    makeVertex(-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f),
-    makeVertex(-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f),
-    makeVertex(-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f),
-    makeVertex(-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f),
+    makeVertex(-0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f),
+    makeVertex(-0.5f, -0.5f,  0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f),
+    makeVertex(-0.5f,  0.5f,  0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
+    makeVertex(-0.5f,  0.5f, -0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f),
 
-    makeVertex(0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f),
-    makeVertex(0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f),
-    makeVertex(0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f),
-    makeVertex(0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f),
+    makeVertex(0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f),
+    makeVertex(0.5f, -0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f),
+    makeVertex(0.5f,  0.5f,  0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f),
+    makeVertex(0.5f,  0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f),
 
-    makeVertex(-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f),
-    makeVertex(0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f),
-    makeVertex(0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f),
-    makeVertex(-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f),
+    makeVertex(-0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f),
+    makeVertex( 0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f),
+    makeVertex( 0.5f, -0.5f,  0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 1.0f),
+    makeVertex(-0.5f, -0.5f,  0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f),
 
-    makeVertex(-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f),
-    makeVertex(0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f),
-    makeVertex(0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f),
-    makeVertex(-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f),
+    makeVertex(-0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f),
+    makeVertex( 0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f),
+    makeVertex( 0.5f, 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f),
+    makeVertex(-0.5f, 0.5f,  0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f),
 };
 
 const uint32_t cubeIndices[] = {
@@ -65,6 +80,9 @@ const uint32_t cubeIndices[] = {
 namespace application {
 
     bool isOrthographic = false;
+    bool enableWeirdSampling = true;
+
+    float currentTime = 0.0f;
 
     glm::vec3 cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
     float cameraYaw = -90.0f;
@@ -94,9 +112,20 @@ namespace application {
         {
             {0.0f, 3.0f, 3.0f}, 5.0f, {0.0f, -1.0f, -1.0f}, 3.0f,
             {1.0f, 1.0f, 0.0f},
-            glm::radians(10.0f), glm::radians(15.0f), {0.0f, 0.0f}
+            glm::radians(10.0f), glm::radians(15.0f), {0.0f, 0.0f, 0.0f}
         },
     };
+
+    std::vector<std::string> texturePaths = {
+        "textures/brick.jpg",
+        "textures/wood.jpg",
+        "textures/metal.jpg",
+        "textures/checker.jpg"
+    };
+    std::vector<std::string> textureNames = {
+        "Brick", "Wood", "Metal", "Checker"
+    };
+    int selectedTextureIndex = 0;
 
     bool initialize() {
         if (!graphics::internal::createBuffers(
@@ -105,6 +134,11 @@ namespace application {
         }
         if (!graphics::internal::createUniformBuffer()) {
             return false;
+        }
+        for (const auto& path : texturePaths) {
+            if (!graphics::internal::createTextureFromFile(path.c_str())) {
+                return false;
+            }
         }
         return graphics::internal::createPipeline();
     }
@@ -163,12 +197,14 @@ namespace application {
         memcpy(modelArray, glm::value_ptr(model), sizeof(modelArray));
         float albedoArray[3] = { albedo.r, albedo.g, albedo.b };
         float specColorArray[3] = { specularColor.r, specularColor.g, specularColor.b };
-        graphics::internal::updateModelUniformBuffer(modelArray, albedoArray, shininess, specColorArray);
+        uint32_t modelSlot = 0;
+        graphics::internal::updateModelUniformBuffer(
+            modelSlot, modelArray, albedoArray, shininess, specColorArray);
 
         graphics::internal::updateLights(pointLights.data(), pointLightCount);
         graphics::internal::updateSpotLights(spotLights.data(), spotLightCount);
 
-        ImGui::Begin("Lab 2: Lighting");
+        ImGui::Begin("Lab 3: Texturing");
 
         if (ImGui::CollapsingHeader("Camera", ImGuiTreeNodeFlags_DefaultOpen)) {
             ImGui::SliderFloat3("Cam Pos", &cameraPos.x, -10.0f, 10.0f);
@@ -195,9 +231,25 @@ namespace application {
         }
 
         if (ImGui::CollapsingHeader("Material", ImGuiTreeNodeFlags_DefaultOpen)) {
-            ImGui::ColorEdit3("Albedo", &albedo.x);
+            ImGui::ColorEdit3("Albedo Tint", &albedo.x);
             ImGui::ColorEdit3("Specular", &specularColor.x);
             ImGui::SliderFloat("Shininess", &shininess, 1.0f, 256.0f);
+
+            ImGui::Checkbox("Weird Sampling", &enableWeirdSampling);
+
+            if (ImGui::BeginCombo("Texture", textureNames[selectedTextureIndex].c_str())) {
+                for (int i = 0; i < (int)textureNames.size(); i++) {
+                    bool isSelected = (selectedTextureIndex == i);
+                    if (ImGui::Selectable(textureNames[i].c_str(), isSelected)) {
+                        selectedTextureIndex = i;
+                        graphics::internal::setActiveTexture(i);
+                    }
+                    if (isSelected) {
+                        ImGui::SetItemDefaultFocus();
+                    }
+                }
+                ImGui::EndCombo();
+            }
         }
 
         if (ImGui::CollapsingHeader("Point Lights", ImGuiTreeNodeFlags_DefaultOpen)) {
@@ -255,19 +307,15 @@ namespace application {
                         {0.0f, 3.0f, 0.0f}, 1.0f,
                         {0.0f, -1.0f, 0.0f}, 3.0f,
                         {1.0f, 1.0f, 1.0f},
-                        glm::radians(15.0f), glm::radians(25.0f), {0.0f, 0.0f}
+                        glm::radians(15.0f), glm::radians(25.0f), {0.0f, 0.0f, 0.0f}
                         });
                 }
             }
         }
-
+        application::currentTime = static_cast<float>(time);
+        graphics::internal::setPushConstants(application::currentTime, enableWeirdSampling ? 1 : 0);
         ImGui::End();
 
         ImGui::ShowDemoWindow();
     }
-
-    void render(const graphics::internal::FrameData& fd) {
-        (void)fd;
-    }
-
 } // namespace application
