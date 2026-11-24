@@ -29,6 +29,7 @@ layout(set = 0, binding = 0) uniform SceneUniforms {
     vec4 ambientColor;
     vec4 directionalDirection;
     vec4 directionalColor;
+    mat4 lightViewProj;
     int pointLightCount;
     int spotLightCount;
 } scene;
@@ -46,21 +47,51 @@ layout(set = 1, binding = 0) uniform ModelUniforms {
     vec3 albedo;
     float shininess;
     vec3 specularColor;
+    int useTexture;
 } model;
 
 layout(set = 2, binding = 0) uniform sampler2D albedoTexture;
+layout(set = 0, binding = 3) uniform sampler2DShadow shadowMap;
 
 layout(push_constant) uniform PushConstants {
     float time;
-    int enableWeirdSampling;
+    int   enableWeirdSampling;
+    float shadowBias;
+    float shadowTexelSize;
 } pc;
+
+float computeShadow(vec3 worldPos, vec3 N, vec3 L) {
+    vec4 lightSpace = scene.lightViewProj * vec4(worldPos, 1.0);
+    vec3 proj = lightSpace.xyz / lightSpace.w;
+    proj.xy = proj.xy * 0.5 + 0.5;
+
+    if (proj.z < 0.0 || proj.z > 1.0 ||
+        proj.x < 0.0 || proj.x > 1.0 ||
+        proj.y < 0.0 || proj.y > 1.0) {
+        return 1.0;
+    }
+
+    float bias = pc.shadowBias;
+    float sum = 0.0;
+    vec2 texel = vec2(pc.shadowTexelSize);
+    for (int x = -1; x <= 1; ++x) {
+        for (int y = -1; y <= 1; ++y) {
+            sum += texture(shadowMap,
+                vec3(proj.xy + vec2(x, y) * texel, proj.z - bias));
+        }
+    }
+    return sum / 9.0;
+}
 
 void main() {
     vec3 N = normalize(in_normal);
     vec3 V = normalize(scene.cameraPos.xyz - in_worldPos);
 
         vec3 surfaceAlbedo;
-        if (pc.enableWeirdSampling != 0) {
+        
+        if (model.useTexture == 0) {
+            surfaceAlbedo = vec3(1.0);
+        } else if (pc.enableWeirdSampling != 0) {
             float stepIndex = floor(pc.time);
             float progress = fract(pc.time);
             float a = fract(sin(stepIndex * 127.1) * 43758.5453);
@@ -92,8 +123,12 @@ void main() {
         vec3 H = normalize(L + V);
         float diff = max(dot(N, L), 0.0);
         float spec = pow(max(dot(N, H), 0.0), model.shininess);
+
+        float shadow = computeShadow(in_worldPos, N, L);
+
         finalColor += scene.directionalColor.xyz * scene.directionalColor.w
-                    * (diff * surfaceAlbedo + spec * model.specularColor);
+                    * (diff * surfaceAlbedo + spec * model.specularColor)
+                    * shadow;
     }
 
     for (int i = 0; i < scene.pointLightCount; i++) {

@@ -14,6 +14,7 @@ layout(set = 0, binding = 0) uniform SceneUniforms {
     vec4 ambientColor;
     vec4 directionalDirection;
     vec4 directionalColor;
+    mat4 lightViewProj;
     int pointLightCount;
     int spotLightCount;
 } scene;

@@ -77,6 +77,10 @@ namespace graphics::internal {
 
 	void setPushConstants(float time, int enableWeirdSampling);
 
+	void setShadowParams(const float* lightViewProj, float depthBiasConstant, float depthBiasSlope, float shadowBias);
+
+	void setDrawModelCount(int count);
+
 	void updateSceneUniformBuffer(
 		const float* viewProj,
 		const float* cameraPos,
@@ -85,14 +89,16 @@ namespace graphics::internal {
 		int spotLightCount,
 		const float* directionalDir,
 		const float* directionalColor,
-		float directionalIntensity);
+		float directionalIntensity,
+		const float* lightViewProj);
 
 	void updateModelUniformBuffer(
 		uint32_t slot,
 		const float* model,
 		const float* albedo,
 		float shininess,
-		const float* specColor);
+		const float* specColor,
+		int useTexture);
 	void updateLights(const PointLight* lights, int count);
 	void updateSpotLights(const SpotLight* lights, int count);
 
